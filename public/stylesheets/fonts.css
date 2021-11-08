@@ -1,0 +1,15 @@
+#headline {
+    font-family: 'Yellowtail', cursive ;
+    font-size: 30px;
+}
+
+*{
+    font-family: 'Arvo', serif;
+}
+
+.navbarHeadline{
+    font-weight: 600;
+}
+.navbarFooter{
+    font-weight: 600;
+}
