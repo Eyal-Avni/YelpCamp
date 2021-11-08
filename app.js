@@ -62,6 +62,12 @@ const store = new MongoStore({
     touchAfter: 24*60*60
 })
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24*60*60
+});
+
 store.on('errorr',function(e){
     console.log('session store error!')
 })
