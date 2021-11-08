@@ -56,12 +56,6 @@ app.use(helmet({
 
 const secret=process.env.SECRET || 'thisshouldbeabettersecret'
 
-const store = new MongoStore({
-    mongoUrl: dbUrl,
-    secret,
-    touchAfter: 24*60*60
-})
-
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     secret,
