@@ -6,7 +6,7 @@
                     <%= err.message %>
                 </h4>
                 <hr>
-                <% if (process.env.NODE_END !== 'production') { %> 
+                <% if (process.env.NODE_ENV !== 'production') { %> 
                     <div class="h5">Stack Trace:</div>
                     <p>
                         <%= err.stack %>

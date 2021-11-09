@@ -3,6 +3,17 @@ const { cloudinary } = require('../cloudinary')
 const mapBoxToken = process.env.MAPBOX_TOKEN
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken })
+const mongoose = require('mongoose')
+
+const ObjectId = require('mongoose').Types.ObjectId;
+function isValidObjectId(id){
+    if(ObjectId.isValid(id)){
+        if((String)(new ObjectId(id)) === id)
+            return true;
+        return false;
+    }
+    return false;
+}
 
 module.exports.index = async (req, res, next) => {
     const campgrounds = await Campground.find({})
@@ -28,7 +39,11 @@ module.exports.createCampground = async (req, res, next) => {
 }
 
 module.exports.showCampground = async (req, res, next) => {
-    const { id } = req.params
+    let { id } = req.params
+    if(!isValidObjectId(id)){
+        req.flash('error', 'Campground not found!')
+        return res.redirect(`/campgrounds`)
+    }
     const campground = await Campground.findById(id).populate({
         path: 'reviews',
         populate: {
