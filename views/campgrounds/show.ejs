@@ -2,15 +2,15 @@
     <link rel="stylesheet" href="/stylesheets/stars.css">
     <link rel="stylesheet" href="/stylesheets/map.css">
     <div class="row">
-        <div class="row mb-1">
+        <h3 class="card-title text-center">
+            <strong><%=campground.title%></strong>
+        </h3>
+        <div class="row mb-2">
             <div id='map' style='height: 300px'></div>
         </div>
         <div class="col-6 mb-3">
-            <div class="card">
+            <div class="card border-0">
                 <div class="card-body">
-                    <h3 class="card-title text-center">
-                        <strong><%=campground.title%></strong>
-                    </h3>
                     <div id="campgroundCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <% campground.images.forEach((img,i)=>{ %>
