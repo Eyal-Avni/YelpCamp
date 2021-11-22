@@ -3,6 +3,7 @@ const { campgroundSchema } = require('../schemas')
 const Review = require('./review')
 const Schema = mongoose.Schema
 const mongooseValidator = require('mongoose-id-validator')
+const GeoJSON = require('mongoose-geojson-schema');
 
 const ImageSchema = new Schema({
     url: String,
@@ -15,17 +16,7 @@ ImageSchema.virtual('thumbnail').get(function () {
 const CampgroundSchema = new Schema({
     title: String,
     images: [ImageSchema],
-    geometry: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
-    },
+    geometry: mongoose.Schema.Types.Geometry,
     price: Number,
     description: String,
     location: String,
@@ -51,6 +42,13 @@ CampgroundSchema.post('findOneAndDelete', async function (doc) {
         })
     }
 })
+
+// CampgroundSchema.post('findOneAndUpdate', async function (doc) {
+//     if (doc) {
+//         console.log(doc)
+//         console.log('middleware ran')
+//     }
+// })
 
 
 module.exports = mongoose.model('Campground', CampgroundSchema)
