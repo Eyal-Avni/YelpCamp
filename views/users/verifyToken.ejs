@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %>
+<h1>Verify Token</h1>
+<div class="container">
+  <form
+    action="/verify"
+    method="POST"
+    class="validated-form row mb-3"
+    novalidate
+  >
+    <div class="mb-3">
+      <label class="form-label" for="token">Enter Token:</label>
+      <input
+        class="form-control"
+        type="number"
+        id="token"
+        name="token"
+        required
+      />
+    </div>
+    <div>
+      <button class="btn btn-info">Verify Token</button>
+    </div>
+  </form>
+</div>
